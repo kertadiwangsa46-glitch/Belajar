@@ -13,14 +13,18 @@
       "runtime": "nodejs18.x"
     }
   },
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/proxy/(?<rest>.*)",
-      "dest": "/api/proxy?rest=$rest"
+      "source": "/api/proxy/:rest*",
+      "destination": "/api/proxy?rest=:rest*"
     },
     {
-      "src": "/api/proxy-img",
-      "dest": "/api/proxy-img"
+      "source": "/api/proxy-img",
+      "destination": "/api/proxy-img"
+    },
+    {
+      "source": "/comic/komikstation/:rest*",
+      "destination": "/api/proxy?rest=komikstation/:rest*"
     }
   ],
   "headers": [
@@ -29,8 +33,11 @@
       "headers": [
         { "key": "Access-Control-Allow-Origin", "value": "*" },
         { "key": "Access-Control-Allow-Methods", "value": "GET, POST, OPTIONS" },
-        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Authorization, Origin, Accept" }
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Authorization, Origin, Accept" },
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
       ]
     }
-  ]
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
 }
