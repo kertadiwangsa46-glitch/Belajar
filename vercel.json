@@ -5,12 +5,12 @@
     "pages/api/proxy.js": {
       "maxDuration": 30,
       "memory": 256,
-      "runtime": "nodejs18.x"
+      "runtime": "vercel-nodejs@18.17.1"
     },
     "pages/api/proxy-img.js": {
       "maxDuration": 45,
       "memory": 256,
-      "runtime": "nodejs18.x"
+      "runtime": "vercel-nodejs@18.17.1"
     }
   },
   "rewrites": [
