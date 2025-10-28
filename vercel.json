@@ -1,6 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "version": 2,
+
   "functions": {
     "api/proxy.js": {
       "maxDuration": 30,
@@ -11,10 +12,21 @@
       "memory": 256
     }
   },
+
   "rewrites": [
     { "source": "/api/proxy/(.*)", "destination": "/api/proxy?rest=$1" },
-    { "source": "/api/proxy-img", "destination": "/api/proxy-img" }
+    { "source": "/api/proxy-img", "destination": "/api/proxy-img" },
+
+    { "source": "/detail", "destination": "/detail.html" },
+    { "source": "/chapter", "destination": "/chapter.html" },
+    { "source": "/populer", "destination": "/populer.html" },
+    { "source": "/recommend", "destination": "/recommend.html" },
+    { "source": "/top", "destination": "/top.html" },
+    { "source": "/latest", "destination": "/latest.html" },
+    { "source": "/search", "destination": "/search.html" },
+    { "source": "/home", "destination": "/index.html" }
   ],
+
   "headers": [
     {
       "source": "/(.*)",
