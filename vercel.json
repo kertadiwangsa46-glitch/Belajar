@@ -1,0 +1,36 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+  "functions": {
+    "pages/api/proxy.js": {
+      "maxDuration": 30,
+      "memory": 256,
+      "runtime": "nodejs18.x"
+    },
+    "pages/api/proxy-img.js": {
+      "maxDuration": 45,
+      "memory": 256,
+      "runtime": "nodejs18.x"
+    }
+  },
+  "routes": [
+    {
+      "src": "/api/proxy/(?<rest>.*)",
+      "dest": "/api/proxy?rest=$rest"
+    },
+    {
+      "src": "/api/proxy-img",
+      "dest": "/api/proxy-img"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Authorization, Origin, Accept" }
+      ]
+    }
+  ]
+}
