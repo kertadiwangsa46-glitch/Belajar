@@ -4,13 +4,11 @@
   "functions": {
     "api/proxy.js": {
       "maxDuration": 30,
-      "memory": 256,
-      "runtime": "vercel-nodejs@18.0.0"
+      "memory": 256
     },
     "api/proxy-img.js": {
       "maxDuration": 45,
-      "memory": 256,
-      "runtime": "vercel-nodejs@18.0.0"
+      "memory": 256
     }
   },
   "rewrites": [
