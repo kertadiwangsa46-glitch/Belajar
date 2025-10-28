@@ -2,30 +2,20 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "version": 2,
   "functions": {
-    "pages/api/proxy.js": {
+    "api/proxy.js": {
       "maxDuration": 30,
       "memory": 256,
-      "runtime": "vercel-nodejs@18.17.1"
+      "runtime": "nodejs18.x"
     },
-    "pages/api/proxy-img.js": {
+    "api/proxy-img.js": {
       "maxDuration": 45,
       "memory": 256,
-      "runtime": "vercel-nodejs@18.17.1"
+      "runtime": "nodejs18.x"
     }
   },
   "rewrites": [
-    {
-      "source": "/api/proxy/:rest*",
-      "destination": "/api/proxy?rest=:rest*"
-    },
-    {
-      "source": "/api/proxy-img",
-      "destination": "/api/proxy-img"
-    },
-    {
-      "source": "/comic/komikstation/:rest*",
-      "destination": "/api/proxy?rest=komikstation/:rest*"
-    }
+    { "source": "/api/proxy/(?<rest>.*)", "destination": "/api/proxy?rest=$rest" },
+    { "source": "/api/proxy-img", "destination": "/api/proxy-img" }
   ],
   "headers": [
     {
@@ -33,11 +23,8 @@
       "headers": [
         { "key": "Access-Control-Allow-Origin", "value": "*" },
         { "key": "Access-Control-Allow-Methods", "value": "GET, POST, OPTIONS" },
-        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Authorization, Origin, Accept" },
-        { "key": "Cache-Control", "value": "public, max-age=3600" }
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Authorization, Origin, Accept" }
       ]
     }
-  ],
-  "cleanUrls": true,
-  "trailingSlash": false
+  ]
 }
